@@ -1,22 +1,3 @@
-function makeTable() {
-  let t = document.querySelector('#my-table');
-  let headerRow = '<tr class="header">';
-  for (let key in data[0]) {
-    headerRow += `<th>${key}<img class="sort-icon" src="images/sort.svg"></th>`;
-  }
-  headerRow += '</tr>';
-  t.innerHTML += headerRow;
-
-  data.forEach((record) => {
-    let row = '<tr>';
-    for (let val in record) {
-      row += `<td>${record[val]}</td>`;
-    }
-    row += '<td><img class="icon" src="images/update.svg"></td></tr>';
-    t.innerHTML += row;
-  });
-}
-
 const data = [
   {
     id: 1,

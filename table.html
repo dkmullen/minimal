@@ -17,14 +17,33 @@
         { name: 'Casey', age: 27, homestate: 'Tennessee' },
         { name: 'Waingro', age: 35, homestate: 'California' },
       ];
-      makeTable(tempData);
+      makeTable();
     </script>
   </body>
 </html>
 
 <style>
+  table {
+    border-collapse: collapse;
+  }
   th {
     text-transform: capitalize;
     text-align: left;
+  }
+  tr {
+    height: 50px;
+    border-bottom: 1px solid brown;
+  }
+  tr:not(.header):hover {
+    background-color: #e6e8f5;
+  }
+  th,
+  td {
+    padding: 0 1em;
+  }
+  .sort-icon {
+    position: relative;
+    left: 8px;
+    top: 5px;
   }
 </style>
