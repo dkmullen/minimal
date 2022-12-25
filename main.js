@@ -17,6 +17,18 @@ function makeTable() {
   });
 }
 
+function editRow() {
+  // 'this' is the clicked row
+  let selected = data.find((o) => o.id === parseInt(this.cells[0].innerHTML));
+  console.log(selected);
+}
+
+setTimeout(() => {
+  document.querySelectorAll('tr').forEach((row) => {
+    row.addEventListener('click', editRow);
+  });
+}, 500);
+
 const data = [
   {
     id: 1,
