@@ -1,5 +1,6 @@
 :root {
   --primary: purple;
+  --primary-darken: rgb(98, 0, 98);
   --accent: rgb(234, 199, 2);
   --off-white: rgb(245, 245, 248);
   --warning: red;
@@ -121,26 +122,36 @@ label:has(+ .required-field)::after {
   color: var(--warning);
 }
 
-header {
-  height: 75px;
+nav {
+  height: 60px;
   background-color: var(--primary);
-  color: white;
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
   margin-bottom: 2rem;
 }
-header h1,
-header ul {
-  position: relative;
-  top: 13px;
+nav h1 {
+  padding: 12px 43px;
 }
-header li {
-  list-style: none;
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  padding-right: 30px;
+}
+nav li {
   display: inline-block;
-  margin-left: 1rem;
 }
-header a {
+nav li a {
+  display: block;
+  text-align: center;
+  padding: 18px 12px;
+}
+nav li a:hover {
+  background-color: var(--primary-darken);
+}
+nav,
+nav a {
   color: white;
   text-decoration: none;
 }
