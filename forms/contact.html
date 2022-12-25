@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <title>Contact me</title>
+  </head>
+  <body>
+    <header>
+      <h1><a href="../index.html">Minimal AF</a></h1>
+      <ul>
+        <li><a href="./misc-form.html">Misc Form</a></li>
+        <li><a href="./contact.html">Contact Form</a></li>
+        <li><a href="../tables/table.html">Table</a></li>
+      </ul>
+    </header>
+    <form id="form" onsubmit="event.preventDefault(); submitMessage();">
+      <div class="contact-form-container">
+        <div class="form-element">
+          <label for="name">Name</label>
+          <input
+            class="form-field"
+            type="text"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+
+        <p class="form-element">
+          <label for="email">Email</label>
+          <input
+            class="form-field"
+            type="email"
+            id="email"
+            name="email"
+            required
+          />
+        </p>
+
+        <p class="form-element">
+          <label for="phone">Phone</label>
+          <input class="form-field" type="phone" id="phone" name="phone" />
+        </p>
+
+        <p class="form-element col-2">
+          <label for="message">Message</label>
+          <textarea
+            class="form-field"
+            id="message"
+            name="message"
+            rows="10"
+            cols="30"
+            required
+          ></textarea>
+        </p>
+        <p class="button-row">
+          <button class="primary" type="submit">Send</button>
+        </p>
+      </div>
+    </form>
+    <script src="../js/contact.js"></script>
+  </body>
+</html>

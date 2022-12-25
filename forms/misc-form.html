@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+
+    <title>Form Elements</title>
+  </head>
+  <header>
+    <h1><a href="../index.html">Minimal AF</a></h1>
+    <ul>
+      <li><a href="./misc-form.html">Misc Form</a></li>
+      <li><a href="./contact.html">Contact Form</a></li>
+      <li><a href="../tables/table.html">Table</a></li>
+    </ul>
+  </header>
+  <body>
+    <form id="form">
+      <div class="container">
+        <div class="form-element">
+          <label for="firstname">First name</label>
+          <input type="text" id="firstname" name="firstname" />
+        </div>
+
+        <div class="form-element">
+          <label for="lastname">Last name</label>
+          <input type="text" id="lastname" name="lastname" />
+        </div>
+
+        <div class="form-element">
+          <label for="cars">Choose a car</label>
+          <select id="cars" name="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+
+        <div class="form-element">
+          <label for="browser-list">Browsers</label>
+
+          <input id="browser-list" list="browsers" />
+          <datalist id="browsers">
+            <option value="Internet Explorer"></option>
+            <option value="Firefox"></option>
+            <option value="Chrome"></option>
+            <option value="Opera"></option>
+            <option value="Safari"></option>
+          </datalist>
+        </div>
+
+        <div class="form-element">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" />
+        </div>
+
+        <div class="form-element">
+          <button type="button" id="toggle-pw-button">
+            <span id="visibility_on"
+              ><img style="width: 24px" src="../images/visibility.svg"
+            /></span>
+            <span id="visibility_off" hidden
+              ><img style="width: 24px" src="../images/visibility_off.svg"
+            /></span>
+          </button>
+        </div>
+
+        <div class="form-element col-2">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="10" cols="30">
+The cat was playing in the garden.</textarea
+          >
+        </div>
+        <div class="button-row">
+          <button
+            class="accent"
+            type="button"
+            onclick="console.log('Hello World!')"
+          >
+            Click Me!
+          </button>
+          <button class="primary" type="submit">Click Me!</button>
+        </div>
+      </div>
+    </form>
+
+    <div data-accordion id="details-wrapper">
+      <details open>
+        <summary>Check one</summary>
+        <div class="content">I'm the content</div>
+      </details>
+      <details>
+        <summary>Check one</summary>
+        <div class="content">I'm the content</div>
+      </details>
+      <details>
+        <summary>Check one</summary>
+        <div class="content">I'm the content</div>
+      </details>
+    </div>
+
+    <script src="../js/misc-form.js"></script>
+  </body>
+</html>

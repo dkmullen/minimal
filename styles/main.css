@@ -1,0 +1,146 @@
+:root {
+  --primary: purple;
+  --accent: rgb(234, 199, 2);
+  --off-white: rgb(245, 245, 248);
+  --warning: red;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.form-element {
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+}
+.form-element input:focus,
+.form-element select:focus,
+.form-element textarea:focus {
+  outline-color: var(--primary);
+}
+.form-element label {
+  display: block;
+}
+input,
+select,
+textarea,
+summary {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: var(--off-white);
+  width: 100%;
+  min-width: 300px;
+  padding: 0.5rem;
+}
+input,
+select {
+  height: 40px;
+}
+
+button {
+  padding: 0.5rem;
+  margin-right: 0.25rem;
+  min-width: 100px;
+  border: none;
+  border-radius: 5px;
+}
+button:hover {
+  filter: brightness(0.9);
+}
+button:active {
+  filter: brightness(1.1);
+}
+button.primary {
+  background-color: var(--primary);
+  color: white;
+}
+button.accent {
+  background-color: var(--accent);
+  color: black;
+}
+
+#toggle-pw-button {
+  position: relative;
+  top: 23px;
+  right: 65px;
+  min-width: 40px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.col-2 {
+  grid-column: 1/3;
+}
+
+.button-row {
+  grid-column: 2;
+  text-align: end;
+}
+
+.container {
+  margin: auto;
+  max-width: 650px;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: auto;
+}
+
+.contact-form-container {
+  margin: auto;
+  max-width: 500px;
+}
+
+@media (max-width: 699px) {
+  .col-2 {
+    grid-column: 1;
+  }
+  .button-row {
+    grid-column: 1;
+    text-align: center;
+  }
+  .container {
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+  }
+}
+
+#details-wrapper {
+  max-width: 700px;
+  margin: 1rem auto;
+}
+
+summary {
+  height: 40px;
+  min-width: 200px;
+  padding: 10px;
+}
+.content {
+  margin: 10px;
+  margin-left: 20px;
+}
+label:has(+ .required-field)::after {
+  content: '*';
+  color: var(--warning);
+}
+
+header {
+  height: 75px;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  margin-bottom: 2rem;
+}
+header h1,
+header ul {
+  position: relative;
+  top: 13px;
+}
+header li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 1rem;
+}
+header a {
+  color: white;
+  text-decoration: none;
+}
