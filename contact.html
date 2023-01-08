@@ -17,7 +17,11 @@
         <li><a href="./table.html">Table</a></li>
       </ul>
     </nav>
-    <form id="form" onsubmit="event.preventDefault(); submitMessage();">
+    <form
+      id="form"
+      onsubmit="event.preventDefault(); submitMessage();"
+      novalidate
+    >
       <div class="contact-form-container">
         <div class="form-element">
           <label for="name">Name</label>
@@ -28,9 +32,10 @@
             name="name"
             required
           />
+          <div class="error-message"></div>
         </div>
 
-        <p class="form-element">
+        <div class="form-element">
           <label for="email">Email</label>
           <input
             class="form-field"
@@ -39,14 +44,21 @@
             name="email"
             required
           />
-        </p>
+          <div class="error-message" id="email-error-message"></div>
+        </div>
 
-        <p class="form-element">
-          <label for="phone">Phone</label>
-          <input class="form-field" type="phone" id="phone" name="phone" />
-        </p>
-
-        <p class="form-element col-2">
+        <div class="form-element">
+          <label for="phone">Phone (US only)</label>
+          <input
+            class="form-field"
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="xxx-xxx-xxxx"
+          />
+          <div class="error-message"></div>
+        </div>
+        <div class="form-element col-2">
           <label for="message">Message</label>
           <textarea
             class="form-field"
@@ -56,12 +68,20 @@
             cols="30"
             required
           ></textarea>
-        </p>
+          <div class="error-message"></div>
+        </div>
+
         <p class="button-row">
-          <button class="primary" type="submit">Send</button>
+          <button class="primary" id="submit-button" type="submit">Send</button>
         </p>
       </div>
     </form>
+    <p class="message-received hide" id="message-received">
+      Thanks! I'll get back to you soon.
+    </p>
+    <p class="error-sending-message error-text hide" id="error-sending-message">
+      Sorry, there was an error in sending the message. Please try again.
+    </p>
     <script src="./js/contact.js"></script>
   </body>
 </html>
