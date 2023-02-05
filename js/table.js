@@ -30,6 +30,21 @@ function editRow() {
   // 'this' is the clicked row
   let selected = data.find((o) => o.id === parseInt(this.cells[0].innerHTML));
   console.log(selected);
+  document.querySelector('#editModal').style['display'] = 'block';
+  let modal = document.querySelector('.modal-body');
+  for (let item in selected) {
+    if (item !== 'id') {
+      modal.innerHTML += `<div><b>${item.charAt(0).toUpperCase()}${item.slice(
+        1
+      )}:</b> ${selected[item]}</div>`;
+    }
+  }
+}
+
+function closeModal() {
+  console.log('hey', document.querySelector('#editModal'));
+  document.querySelector('#editModal').style['display'] = 'none';
+  document.querySelector('.modal-body').innerHTML = '';
 }
 
 setTimeout(() => {

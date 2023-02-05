@@ -7,6 +7,7 @@
     <title>Minimal: Table</title>
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/modal.css" />
   </head>
   <body>
     <nav>
@@ -18,41 +19,50 @@
       </ul>
     </nav>
     <table id="my-table"></table>
+    <div id="editModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Edit Record</h1>
+          <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
     <script src="./js/table.js"></script>
     <script>
       makeTable();
     </script>
+    <style>
+      table {
+        margin: auto;
+        border-collapse: collapse;
+      }
+      th {
+        text-transform: capitalize;
+        text-align: left;
+      }
+      tr {
+        height: 50px;
+        border-bottom: 1px solid var(--accent);
+      }
+      tr:not(.header):hover {
+        background-color: var(--off-white);
+      }
+      th,
+      td {
+        padding: 0 1em;
+      }
+      .sort-icon {
+        display: inline-block;
+        position: relative;
+        left: 8px;
+        top: 5px;
+      }
+      .edit-icon,
+      .sort-active {
+        fill: var(--primary);
+      }
+    </style>
   </body>
 </html>
-
-<style>
-  table {
-    margin: auto;
-    border-collapse: collapse;
-  }
-  th {
-    text-transform: capitalize;
-    text-align: left;
-  }
-  tr {
-    height: 50px;
-    border-bottom: 1px solid var(--accent);
-  }
-  tr:not(.header):hover {
-    background-color: var(--off-white);
-  }
-  th,
-  td {
-    padding: 0 1em;
-  }
-  .sort-icon {
-    display: inline-block;
-    position: relative;
-    left: 8px;
-    top: 5px;
-  }
-  .edit-icon,
-  .sort-active {
-    fill: var(--primary);
-  }
-</style>
