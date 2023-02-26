@@ -1,5 +1,6 @@
 function makeTable() {
   let t = document.querySelector('#my-table');
+  t.innerHTML = '';
   let headerRow = '<tr class="header">';
   for (let key in data[0]) {
     headerRow += `<th>${key}
@@ -29,6 +30,18 @@ function makeTable() {
     </tr>`;
     t.innerHTML += row;
   });
+  setTimeout(() => {
+    document.querySelectorAll('tr').forEach((row) => {
+      row.editIcon = row.querySelector('.edit-cell');
+      if (row.editIcon) {
+        row.editIcon.addEventListener('click', editRow);
+      }
+      row.deleteIcon = row.querySelector('.delete-cell');
+      if (row.deleteIcon) {
+        row.deleteIcon.addEventListener('click', deleteRow);
+      }
+    });
+  }, 500);
 }
 
 let rowId = '';
@@ -46,14 +59,22 @@ function editRow() {
 }
 
 function doSave() {
+  // Fake API POST call
   let obj = {
-    id: rowId,
+    id: parseInt(rowId),
     name: document.querySelector('#edit-name').value,
     email: document.querySelector('#edit-email').value,
     title: document.querySelector('#edit-title').value,
   };
-  console.log(obj);
-  // TODO: Update data object and table
+  // then, if it succeeds...
+  let targetObj = data.find((o) => o.id === obj.id);
+  for (let item in obj) {
+    if (item !== 'id') {
+      targetObj[item] = obj[item];
+    }
+  }
+  makeTable();
+  closeModal('#editModal');
 }
 
 function deleteRow() {
@@ -72,16 +93,11 @@ function deleteRow() {
 }
 
 function doDelete() {
-  // Fake api call
+  // Fake API GET call
   data = data.filter((o) => o.id !== parseInt(rowId));
   // then, if it succeeds...
   document.querySelector(`#row-${rowId}`).remove();
   closeModal('#deleteModal');
-}
-
-function doEdit() {
-  let obj = data.find((o) => o.id === parseInt(rowId));
-  closeModal('#editModal');
 }
 
 function closeModal(name) {
@@ -89,19 +105,6 @@ function closeModal(name) {
   elem.style['display'] = 'none';
   rowId = '';
 }
-
-setTimeout(() => {
-  document.querySelectorAll('tr').forEach((row) => {
-    row.editIcon = row.querySelector('.edit-cell');
-    if (row.editIcon) {
-      row.editIcon.addEventListener('click', editRow);
-    }
-    row.deleteIcon = row.querySelector('.delete-cell');
-    if (row.deleteIcon) {
-      row.deleteIcon.addEventListener('click', deleteRow);
-    }
-  });
-}, 500);
 
 let data = [
   {
