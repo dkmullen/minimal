@@ -13,12 +13,15 @@
 }
 
 /* Modal Content/Box */
+.modal-content-wrapper {
+  padding: 1rem;
+}
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
   border: 1px solid #888;
   width: 80%;
   max-width: 600px;
+  margin: 15% auto;
 }
 
 .modal-header {
@@ -27,9 +30,9 @@
   padding: 8px 1rem;
 }
 
-.modal-body {
+/* .modal-body {
   padding: 1rem;
-}
+} */
 
 /* Close Button */
 .close {

@@ -13,7 +13,7 @@ function makeTable() {
   t.innerHTML += headerRow;
 
   data.forEach((record) => {
-    let row = '<tr>';
+    let row = `<tr id="row-${record.id}">`;
     for (let val in record) {
       row += `<td>${record[val]}</td>`;
     }
@@ -31,24 +31,34 @@ function makeTable() {
   });
 }
 
+let rowId = '';
+
 function editRow() {
   // 'this' is the clicked cell
-  let rowId = this.id.split('-')[1];
+  rowId = this.id.split('-')[1];
   let selected = data.find((o) => o.id === parseInt(rowId));
   document.querySelector('#editModal').style['display'] = 'block';
-  let modal = document.querySelector('.edit-modal-body');
   for (let item in selected) {
     if (item !== 'id') {
-      modal.innerHTML += `<div><b>${item.charAt(0).toUpperCase()}${item.slice(
-        1
-      )}:</b> ${selected[item]}</div>`;
+      document.querySelector(`#edit-${item}`).value = selected[item];
     }
   }
 }
 
+function doSave() {
+  let obj = {
+    id: rowId,
+    name: document.querySelector('#edit-name').value,
+    email: document.querySelector('#edit-email').value,
+    title: document.querySelector('#edit-title').value,
+  };
+  console.log(obj);
+  // TODO: Update data object and table
+}
+
 function deleteRow() {
   // 'this' is the clicked cell
-  let rowId = this.id.split('-')[1];
+  rowId = this.id.split('-')[1];
   let selected = data.find((o) => o.id === parseInt(rowId));
   document.querySelector('#deleteModal').style['display'] = 'block';
   let modal = document.querySelector('.delete-modal-body');
@@ -61,10 +71,23 @@ function deleteRow() {
   }
 }
 
+function doDelete() {
+  // Fake api call
+  data = data.filter((o) => o.id !== parseInt(rowId));
+  // then, if it succeeds...
+  document.querySelector(`#row-${rowId}`).remove();
+  closeModal('#deleteModal');
+}
+
+function doEdit() {
+  let obj = data.find((o) => o.id === parseInt(rowId));
+  closeModal('#editModal');
+}
+
 function closeModal(name) {
   let elem = document.querySelector(name);
   elem.style['display'] = 'none';
-  elem.querySelector('.modal-body').innerHTML = '';
+  rowId = '';
 }
 
 setTimeout(() => {
@@ -80,7 +103,7 @@ setTimeout(() => {
   });
 }, 500);
 
-const data = [
+let data = [
   {
     id: 1,
     name: 'Cameron Williamson',

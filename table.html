@@ -26,7 +26,56 @@
           <h1>Edit Record</h1>
           <span class="close" onclick="closeModal('#editModal')">&times;</span>
         </div>
-        <div class="modal-body edit-modal-body"></div>
+        <div class="modal-content-wrapper">
+          <div class="modal-body edit-modal-body">
+            <form
+              id="form"
+              onsubmit="event.preventDefault(); submitMessage();"
+              novalidate
+            >
+              <div class="contact-form-container">
+                <div class="form-element">
+                  <label for="edit-name">Name</label>
+                  <input
+                    class="form-field"
+                    type="text"
+                    id="edit-name"
+                    name="edit-name"
+                    required
+                  />
+                  <div class="error-message"></div>
+                </div>
+                <div class="form-element">
+                  <label for="edit-email">Email</label>
+                  <input
+                    class="form-field"
+                    type="email"
+                    id="edit-email"
+                    name="edit-email"
+                    required
+                  />
+                  <div class="error-message" id="email-error-message"></div>
+                </div>
+                <div class="form-element">
+                  <label for="edit-title">Title</label>
+                  <input
+                    class="form-field"
+                    type="text"
+                    id="edit-title"
+                    name="edit-title"
+                    required
+                  />
+                  <div class="error-message"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="button-row">
+            <button onclick="closeModal('#editModal')" class="primary">
+              Cancel</button
+            ><button onclick="doSave()">Save</button>
+          </div>
+        </div>
       </div>
     </div>
     <div id="deleteModal" class="modal">
@@ -38,7 +87,15 @@
             >&times;</span
           >
         </div>
-        <div class="modal-body delete-modal-body"></div>
+        <div class="modal-content-wrapper">
+          <h3>Are you sure?</h3>
+          <div class="modal-body delete-modal-body"></div>
+          <div class="button-row">
+            <button onclick="closeModal('#deleteModal')" class="primary">
+              Cancel</button
+            ><button onclick="doDelete()">Delete</button>
+          </div>
+        </div>
       </div>
     </div>
     <script src="./js/table.js"></script>
