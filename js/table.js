@@ -2,7 +2,7 @@ function makeTable() {
   let t = document.querySelector('#my-table');
   t.innerHTML = '';
   let headerRow = '<tr class="header">';
-  for (let key in data[0]) {
+  for (let key in tableData[0]) {
     headerRow += `<th>${key}
     <svg class="sort-icon" width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path class="sort-active" d="M16.9706 8.48528L8.48529 0L9.29832e-06 8.48528H16.9706Z" fill="#960921"/>
@@ -13,7 +13,7 @@ function makeTable() {
   headerRow += '</tr>';
   t.innerHTML += headerRow;
 
-  data.forEach((record) => {
+  tableData.forEach((record) => {
     let row = `<tr id="row-${record.id}">`;
     for (let val in record) {
       row += `<td>${record[val]}</td>`;
@@ -49,7 +49,7 @@ let rowId = '';
 function editRow() {
   // 'this' is the clicked cell
   rowId = this.id.split('-')[1];
-  let selected = data.find((o) => o.id === parseInt(rowId));
+  let selected = tableData.find((o) => o.id === parseInt(rowId));
   document.querySelector('#editModal').style['display'] = 'block';
   for (let item in selected) {
     if (item !== 'id') {
@@ -67,10 +67,17 @@ function doSave() {
     title: document.querySelector('#edit-title').value,
   };
   // then, if it succeeds...
-  let targetObj = data.find((o) => o.id === obj.id);
+  let targetObj = tableData.find((o) => o.id === obj.id);
   for (let item in obj) {
     if (item !== 'id') {
       targetObj[item] = obj[item];
+    }
+  }
+  // Update the stored data object too, via an api post call in prod
+  let dataTargetObj = data.find((o) => o.id === obj.id);
+  for (let item in obj) {
+    if (item !== 'id') {
+      dataTargetObj[item] = obj[item];
     }
   }
   makeTable();
@@ -80,7 +87,7 @@ function doSave() {
 function deleteRow() {
   // 'this' is the clicked cell
   rowId = this.id.split('-')[1];
-  let selected = data.find((o) => o.id === parseInt(rowId));
+  let selected = tableData.find((o) => o.id === parseInt(rowId));
   document.querySelector('#deleteModal').style['display'] = 'block';
   let modal = document.querySelector('.delete-modal-body');
   for (let item in selected) {
@@ -94,6 +101,8 @@ function deleteRow() {
 
 function doDelete() {
   // Fake API GET call
+  tableData = tableData.filter((o) => o.id !== parseInt(rowId));
+  // Update the stored data object too, via an api post call in prod
   data = data.filter((o) => o.id !== parseInt(rowId));
   // then, if it succeeds...
   document.querySelector(`#row-${rowId}`).remove();
@@ -104,6 +113,22 @@ function closeModal(name) {
   let elem = document.querySelector(name);
   elem.style['display'] = 'none';
   rowId = '';
+}
+
+function doFilter() {
+  let val = document.querySelector('#find').value;
+  if (val.length > 2) {
+    tableData = data.filter((i) => {
+      return (
+        i.name.toLowerCase().includes(val.toLowerCase()) ||
+        i.email.toLowerCase().includes(val.toLowerCase()) ||
+        i.title.toLowerCase().includes(val.toLowerCase())
+      );
+    });
+  } else {
+    tableData = structuredClone(data);
+  }
+  makeTable();
 }
 
 let data = [
@@ -288,3 +313,4 @@ let data = [
     title: 'Scrum Master',
   },
 ];
+let tableData = structuredClone(data);

@@ -18,6 +18,17 @@
         <li><a href="./table.html">Table</a></li>
       </ul>
     </nav>
+    <div class="form-element" style="max-width: 200px; margin: auto">
+      <label for="name">Find</label>
+      <input
+        class="form-field"
+        type="text"
+        id="find"
+        name="find"
+        oninput="doFilter()"
+      />
+      <div class="error-message"></div>
+    </div>
     <table id="my-table"></table>
     <div id="editModal" class="modal">
       <!-- Modal content -->
