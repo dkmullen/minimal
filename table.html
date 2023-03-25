@@ -121,6 +121,7 @@
       th {
         text-transform: capitalize;
         text-align: left;
+        cursor: pointer;
       }
       tr {
         height: 50px;
@@ -144,6 +145,15 @@
       .sort-active {
         fill: var(--primary);
         cursor: pointer;
+      }
+      th path {
+        fill: var(--gray);
+      }
+      th.asc path.up {
+        fill: var(--primary);
+      }
+      th.desc path.down {
+        fill: var(--primary);
       }
     </style>
   </body>

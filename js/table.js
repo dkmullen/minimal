@@ -3,10 +3,10 @@ function makeTable() {
   t.innerHTML = '';
   let headerRow = '<tr class="header">';
   for (let key in tableData[0]) {
-    headerRow += `<th>${key}
+    headerRow += `<th class="th">${key}
     <svg class="sort-icon" width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path class="sort-active" d="M16.9706 8.48528L8.48529 0L9.29832e-06 8.48528H16.9706Z" fill="#960921"/>
-<path d="M1.00136e-05 12.4853L8.48529 20.9706L16.9706 12.4853L1.00136e-05 12.4853Z" fill="#e6e8f5"/>
+<path class="up" d="M16.9706 8.48528L8.48529 0L9.29832e-06 8.48528H16.9706Z"/>
+<path class="down" d="M1.00136e-05 12.4853L8.48529 20.9706L16.9706 12.4853L1.00136e-05 12.4853Z"/>
 </svg>
     </th>`;
   }
@@ -30,6 +30,12 @@ function makeTable() {
     </tr>`;
     t.innerHTML += row;
   });
+  let headers = document.querySelectorAll('th');
+  headers.forEach((header) => {
+    if (header.textContent.includes(currentSortKey)) {
+      header.classList.add(ascending ? 'asc' : 'desc');
+    }
+  });
   setTimeout(() => {
     document.querySelectorAll('tr').forEach((row) => {
       row.editIcon = row.querySelector('.edit-cell');
@@ -40,6 +46,9 @@ function makeTable() {
       if (row.deleteIcon) {
         row.deleteIcon.addEventListener('click', deleteRow);
       }
+    });
+    headers.forEach((header) => {
+      header.addEventListener('click', sortColumn);
     });
   }, 500);
 }
@@ -56,6 +65,24 @@ function editRow() {
       document.querySelector(`#edit-${item}`).value = selected[item];
     }
   }
+}
+
+let currentSortKey = 'id';
+let ascending = true;
+
+function sortColumn(e) {
+  const sortKey = e.target.textContent.replace(/\s/g, '');
+  if (!currentSortKey || sortKey !== currentSortKey) {
+    ascending = true;
+    // A reset
+    tableData.sort((a, b) => (a.index > b.index ? 1 : -1));
+    currentSortKey = sortKey;
+    tableData.sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1));
+  } else {
+    tableData.reverse();
+    ascending = !ascending;
+  }
+  makeTable();
 }
 
 function doSave() {

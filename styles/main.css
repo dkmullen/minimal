@@ -3,6 +3,7 @@
   --primary-darken: rgb(98, 0, 98);
   --accent: rgb(234, 199, 2);
   --off-white: rgb(245, 245, 248);
+  --gray: #e6e8f5;
   --warning: #c20e3e;
 }
 body {
