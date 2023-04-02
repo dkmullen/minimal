@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="./styles/modal.css" />
+    <link rel="stylesheet" href="./styles/table.css" />
+    <link rel="stylesheet" href="./styles/form.css" />
   </head>
   <body>
     <nav>
@@ -29,9 +31,10 @@
       />
       <div class="error-message"></div>
     </div>
+    <!-- Table is built in table.js -->
     <table id="my-table"></table>
+    <!-- Edit dialog -->
     <div id="editModal" class="modal">
-      <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
           <h1>Edit Record</h1>
@@ -44,7 +47,7 @@
               onsubmit="event.preventDefault(); submitMessage();"
               novalidate
             >
-              <div class="contact-form-container">
+              <div class="modal-form-container">
                 <div class="form-element">
                   <label for="edit-name">Name</label>
                   <input
@@ -89,8 +92,8 @@
         </div>
       </div>
     </div>
+    <!-- Delete dialog -->
     <div id="deleteModal" class="modal">
-      <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
           <h1>Delete Record</h1>
@@ -113,48 +116,5 @@
     <script>
       makeTable();
     </script>
-    <style>
-      table {
-        margin: auto;
-        border-collapse: collapse;
-      }
-      th {
-        text-transform: capitalize;
-        text-align: left;
-        cursor: pointer;
-      }
-      tr {
-        height: 50px;
-        border-bottom: 1px solid var(--accent);
-      }
-      tr:not(.header):hover {
-        background-color: var(--off-white);
-      }
-      th,
-      td {
-        padding: 0 1em;
-      }
-      .sort-icon {
-        display: inline-block;
-        position: relative;
-        left: 8px;
-        top: 5px;
-      }
-      .edit-icon,
-      .delete-icon,
-      .sort-active {
-        fill: var(--primary);
-        cursor: pointer;
-      }
-      th path {
-        fill: var(--gray);
-      }
-      th.asc path.up {
-        fill: var(--primary);
-      }
-      th.desc path.down {
-        fill: var(--primary);
-      }
-    </style>
   </body>
 </html>

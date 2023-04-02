@@ -1,7 +1,6 @@
 # TODO:
 
-- Set up blank row for empty table
-- style and position of filter
-- make filter more generic
-- sort
+- Responsive nav bar
 - api
+- PW field improvements
+- Responsive table?
