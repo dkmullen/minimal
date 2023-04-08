@@ -4,6 +4,7 @@
   --accent: rgb(234, 199, 2);
   --off-white: rgb(245, 245, 248);
   --gray: #e6e8f5;
+  --dark-gray: #717171;
   --warning: #c20e3e;
 }
 body {
@@ -51,4 +52,51 @@ nav,
 nav a {
   color: white;
   text-decoration: none;
+}
+.menu {
+  display: flex;
+}
+.menu-icon {
+  margin-right: 1rem;
+  margin-top: 10px;
+  display: none;
+}
+.menu-icon-wrapper {
+  display: none;
+}
+
+@media (max-width: 649px) {
+  .menu-icon-wrapper {
+    width: 70%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+  nav h1 {
+    padding: 12px 0 0 20px;
+  }
+  nav ul {
+    padding-right: 0;
+    width: 200px;
+  }
+  nav li a {
+    text-align: center;
+    font-size: larger;
+  }
+  .menu {
+    opacity: 0;
+    z-index: -1;
+    flex-direction: column;
+    background-color: var(--dark-gray);
+    position: absolute;
+    right: 60px;
+    top: 60px;
+  }
+  .menu.show {
+    opacity: 1;
+    z-index: 2;
+  }
 }

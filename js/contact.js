@@ -1,17 +1,14 @@
-function submitMessage() {
-  const form = document.querySelector('#form');
+const form = document.querySelector('#form');
+form.addEventListener('submit', submitMessage);
+
+function submitMessage(event) {
   let data = new FormData(form);
   let payload = {};
-
-  form.addEventListener('submit', readForm);
-
-  function readForm(event) {
-    event.preventDefault();
-    for (let i of data) {
-      payload[i[0]] = i[1];
-    }
-    console.log(payload);
+  event.preventDefault();
+  for (let i of data) {
+    payload[i[0]] = i[1];
   }
+  console.log(payload);
 }
 
 function validate() {
